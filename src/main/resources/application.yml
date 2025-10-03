@@ -1,0 +1,57 @@
+server:
+  port: 8123
+  servlet:
+    context-path: /api
+    session:
+      cookie:
+        max-age: 2592000
+spring:
+  # session配置
+  session:
+    store-type: redis
+    # session超时时间,30天
+    timeout: 2592000
+  application:
+    name: picture-backend
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+    url: ${spring.datasource.url}
+  profiles:
+    active: local
+    # 开放更大的文件上传体积
+  servlet:
+    multipart:
+      max-file-size: 10MB
+  # Redis配置
+  redis:
+    database: ${spring.redis.database}
+    host: localhost
+    port: 6379
+    timeout: 5000
+    password: ${spring.redis.password}
+# mybatis-plus配置
+mybatis-plus:
+  global-config:
+    db-config:
+      logic-delete-field: isDelete
+      logic-delete-value: 1  #删除
+      logic-not-delete-value: 0 #未删除
+  configuration:
+    map-underscore-to-camel-case: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+#接口文档配置
+knife4j:
+  enable: true
+  openapi:
+    title: 接口文档
+    version: 1.0
+    group:
+      test1:
+        group-name: 默认分组
+        api-rule: package
+        api-rule-resources:
+          - com.sct.picturebackend.controller
+aliYunAi:
+  apiKey: ${aliYunAi.apiKey}
