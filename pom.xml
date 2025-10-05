@@ -133,7 +133,6 @@
                 <version>${spring-boot.version}</version>
                 <configuration>
                     <mainClass>com.sct.picturebackend.PictureBackendApplication</mainClass>
-                    <skip>true</skip>
                 </configuration>
                 <executions>
                     <execution>
