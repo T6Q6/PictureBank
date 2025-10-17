@@ -138,7 +138,7 @@ public class UserController {
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
     public BaseResponse<Boolean> updateUser(@RequestBody UserUpdateRequest userUpdateRequest) {
         log.info("更新用户:{}", userUpdateRequest);
-        ThrowUtils.throwIf((userUpdateRequest == null || userUpdateRequest.getId() == null),
+        ThrowUtils.throwIf((userUpdateRequest == null),
                 new BusinessException(ErrorCode.PARAMS_ERROR));
         User user = new User();
         BeanUtils.copyProperties(userUpdateRequest, user);
