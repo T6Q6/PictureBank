@@ -98,7 +98,7 @@ public class UserController {
      */
     @GetMapping("/get")
     @AuthCheck(mustRole = UserConstant.ADMIN_ROLE)
-    public BaseResponse<User> getUserById(long id) {
+    public BaseResponse<User> getUserById(@RequestParam long id) {
         log.info("根据id获取用户（仅管理员）:{}", id);
         ThrowUtils.throwIf(id <= 0, ErrorCode.PARAMS_ERROR);
         User user = userService.getById(id);
@@ -110,7 +110,7 @@ public class UserController {
      * 根据id获取包装类
      */
     @GetMapping("/get/vo")
-    public BaseResponse<UserVO> getUserVOById(long id) {
+    public BaseResponse<UserVO> getUserVOById(@RequestParam long id) {
         log.info("根据id获取包装类:{}", id);
         BaseResponse<User> response = getUserById(id);
         User user = response.getData();
